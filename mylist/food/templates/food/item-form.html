@@ -2,7 +2,7 @@
 
 {%block body%}
 <form method="POST">
-    {% csrf_token %} # for security 
+    {% csrf_token %} 
     {{form}}
     <button type="submit">Save</button>
 </form>

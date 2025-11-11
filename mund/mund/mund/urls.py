@@ -23,6 +23,6 @@ urlpatterns = [
     path("food/", include("food.urls")),
     path("register/", user_views.register, name="register"),
     path("login/", authentication_views.LoginView.as_view(template_name="users/login.html"), name= "login"),#for as view: the place wher you should search for the tamplate
-
+    path("logout/", authentication_views.LogoutView.as_view(template_name="users/logout.html"), name="logout"),
     
 ]
