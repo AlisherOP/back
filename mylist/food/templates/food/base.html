@@ -12,12 +12,12 @@
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark">
-        <a href="#" class="navbar-brand ">Food Apps</a>
+        <a href="{%url 'food:index' %}" class="navbar-brand ">Food Apps</a>
         <div class="navbar">
-            <a href="/food/add" class="navbar-item nav-link">Add item</a>
-            <a href="#" class="navbar-item nav-link">Delete item</a>
-            <a href="#" class="navbar-item nav-link">View item</a>
             {%if user.is_authenticated %}
+                <a href="/food/add" class="navbar-item nav-link">Add item</a>
+                {% comment %} <a href="#" class="navbar-item nav-link">Delete item</a>
+                <a href="#" class="navbar-item nav-link">View item</a> {% endcomment %}
                 <a href="{%url 'logout' %}" class="navbar-item nav-link">Logout</a>
                 <a href="{%url 'profile'%}" class="navbar-item nav-link">Profiles</a>
             {%else%}

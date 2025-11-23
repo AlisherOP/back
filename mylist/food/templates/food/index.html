@@ -8,6 +8,7 @@
 </head>
 <body>
     {% block body %}
+
     {% for item in item_list %}
     <div class="row">
         <div class="col-md-3 offset-md-2">
@@ -16,27 +17,31 @@
         <div class="col-md-4">
             <h3>{{item.item_name}}</h3>
             <h4>{{item.item_desc}}</h4>
-            <h6>{{item.item_price}}$</h6>
+            <h6>{{item.item_cal}} Cal</h6>
         </div>
         <div class="col-md-2">
             <a href="{%url 'food:detail' item.id %}" class="btn btn-success">Details</a>
         </div>
     </div>
-
-
-
-
-
-
-
-
-    {% endfor %}
     
+    <!-- {%if item_list.has_previous%}
+        <a href=""></a>
+        <a href=""></a>
+    {%endif%} -->
+
+    
+    {% endfor %}
+    {%if item_list.has_previous%}
+        <a href="?page=1">First</a>
+        <a href="?page={{item_list.previous_page_number}}">Previous</a>
+    {%endif%}
+    Page{{item_list.number}} of {{item_list.paginator.num_pages}}
+
+    {%if item_list.has_next%}
+        <a href="?page={{item_list.next_page_number}}">Next</a>
+        <a href="?page={{item_list.paginator.num_pages}}">Last</a>
+    {%endif%}
+
     {% endblock %}
-    <!-- <ul>
-        <li>
-            <a href="/food/{{ item.id }}">{{ item.id }} -- {{ item.item_name }}</a>
-        </li>
-    </ul>-->
 </body>
 </html>

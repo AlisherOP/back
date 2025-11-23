@@ -6,11 +6,19 @@ from .forms import ItemForm
 from django.views.generic.list import ListView# for the class base view
 from django.views.generic.detail import  DetailView
 from django.views.generic.edit import CreateView
+from django.core.paginator import Paginator
 # Create your views here.
 
 #out of stock
 def index(request):
     item_list = Item.objects.all()
+    # food_name=request.GET.get('movie_name')
+    # if food_name !="" and food_name is not None:
+    #     food_name=item_list.filter(name_ivontains=food_name)
+    
+    paginator=Paginator(item_list,3)
+    page= request.GET.get('page')
+    item_list=paginator.get_page(page)
     context = {
         "item_list": item_list,
     }
@@ -54,8 +62,8 @@ class CreateItem(CreateView):
     fields=["item_name", "item_desc","item_price", "item_image"]
     template_name= "food/item-form.html"
 
-    def form_valid(self, form):
-        form.instance.user_name= self.request.user
+    def form_valid(self, form):#accepting form
+        form.instance.user_name= self.request.user#getting the username for the form
         return super().form_valid(form)
     
 

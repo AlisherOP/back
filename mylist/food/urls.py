@@ -5,7 +5,8 @@ from django.urls import path
 app_name = "food"
 urlpatterns = [
     # food
-    path("", views.IndexClassView.as_view(), name='index'),
+    # path("", views.IndexClassView.as_view(), name='index'),
+    path("", views.index, name= 'index'),
     # food/1
     path("<int:pk>/", views.FoodDetail.as_view(), name="detail"),
     path("item/", views.item, name='item'),
