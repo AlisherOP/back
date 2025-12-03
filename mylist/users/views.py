@@ -38,6 +38,13 @@ def favourite_add(request, id):
 @login_required
 def favourite_list(request):
     favourites= Item.objects.filter(favourites=request.user)
+    tracker=0
+    for fav in favourites:
+        tracker = tracker+fav.item_cal
     return render(
-        request, 'users/favourites.html', {"favourites": favourites}
+        request, 'users/favourites.html', 
+        {
+        "favourites": favourites,
+        "tracker":tracker
+        }
     ) 
