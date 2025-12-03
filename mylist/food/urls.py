@@ -1,12 +1,13 @@
 from . import views
-from django.urls import path
-
+from django.urls import path, include
+from rest_framework import routers
 
 app_name = "food"
+
 urlpatterns = [
     # food
     # path("", views.IndexClassView.as_view(), name='index'),
-    path("", views.index, name= 'index'),
+    path("", views.index, name='index'),
     # food/1
     path("<int:pk>/", views.FoodDetail.as_view(), name="detail"),
     path("item/", views.item, name='item'),
@@ -16,5 +17,5 @@ urlpatterns = [
     path("update/<int:id>/", views.update_item, name="update_item"),
     # delete
     path("delete/<int:id>/", views.delete_item, name="delete_item"),
-
 ]
+

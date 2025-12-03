@@ -16,6 +16,9 @@ class Item(models.Model):
     item_price=models.IntegerField()
     item_cal = models.IntegerField(default=0)
     item_image = models.CharField(max_length=500 , default="https://cdn.dribbble.com/userupload/22570626/file/original-379b4978ee41eeb352e0ddacbaa6df96.jpg")
+    favourites= models.ManyToManyField(
+        User, related_name='favorite', default=None, blank=None
+    )
     #once a new item is created we should go straight to the desciption
     
     def get_absolute_url(self):

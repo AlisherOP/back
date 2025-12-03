@@ -1,3 +1,5 @@
+from django.shortcuts import render, get_object_or_404
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Item
@@ -7,8 +9,15 @@ from django.views.generic.list import ListView  # for the class base view
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.core.paginator import Paginator
+from users.models import Profile
+from rest_framework import viewsets, generics
+from .serializers import RoomSerializer
 # Create your views here.
 
+
+class RoomView(viewsets.ModelViewSet):
+    queryset = Item.objects.all()
+    serializer_class = RoomSerializer
 # out of stock
 
 
@@ -95,3 +104,23 @@ def delete_item(request, id):
         return redirect("food:index")
 
     return render(request, "food/item-delete.html", {"item": item})
+
+
+
+
+def food_detail(request, pk):
+    food = get_object_or_404(Item, pk=pk)
+    is_favorite = False
+
+    if request.user.is_authenticated:
+        user_profile = Profile.objects.filter(
+            user=request.user).first()
+        if user_profile:
+            is_favorite = user_profile.is_favorite(food)
+
+    return render(request, 'food/section.html', {
+        'food': food,
+        'is_favorite': is_favorite
+    })
+
+

@@ -1,7 +1,10 @@
-from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm
+from .models import Profile
+from food.models import Item 
 # Create your views here.
 
 
@@ -21,3 +24,20 @@ def register(request):
 @login_required# a decorator to add restrictions
 def profilepage(request):
     return render(request, 'users/profiles.html')
+
+
+@login_required
+def favourite_add(request, id):
+    post=get_object_or_404(Item, id=id)
+    if post.favourites.filter(id=request.user.id).exists():
+        post.favourites.remove(request.user)
+    else:
+        post.favourites.add(request.user)
+    return HttpResponseRedirect(request.META["HTTP_REFERER"])
+
+@login_required
+def favourite_list(request):
+    new= Item.newmanager.filter(favourite=request.user)
+    return render(
+        request, 'users/favourites.html', {"new": new}
+    )

@@ -24,7 +24,8 @@
         </div>
         <div class="col-md-2">
             <a href="{%url 'food:detail' item.id %}" class="btn btn-success">Details</a>
-        </div>
+            <a href="{% url 'favourite_add' item.id %}" class="btn  btn-outline-primary">Add to Favourities</a>
+                </div>
     </div>
     
     <!-- {%if item_list.has_previous%}
