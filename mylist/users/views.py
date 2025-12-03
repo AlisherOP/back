@@ -37,7 +37,7 @@ def favourite_add(request, id):
 
 @login_required
 def favourite_list(request):
-    new= Item.newmanager.filter(favourite=request.user)
+    favourites= Item.objects.filter(favourites=request.user)
     return render(
-        request, 'users/favourites.html', {"new": new}
-    )
+        request, 'users/favourites.html', {"favourites": favourites}
+    ) 

@@ -1,10 +1,31 @@
-{% comment %} {%extends "food/base.html"%}
+{%extends "food/base.html"%}
 {%block body%}
 
-{%endblock%} {% endcomment %}
 
 {{user.username}}
-<div>
-    <img src="{{user.profile.image.url}}" height="300">
+<div class="row">
+    <img src="{{user.profile.image.url}}" height="170">
     
 </div>
+{% for item in favourites %}
+<div class="row">
+    <div class="col-md-3 offset-md-2">
+        <img class="card" height="200px" src="{{item.item_image}}" />
+    </div>
+    <div class="col-md-4">
+        <h3>{{item.item_name}}</h3>
+        <h4>{{item.item_desc}}</h4>
+        <h6>{{item.item_cal}} Cal</h6> 
+    </div>
+    <div class="col-md-2">
+        <a href="{%url 'food:detail' item.id %}" class="btn btn-success">Details</a>
+        <a href="{% url 'favourite_add' item.id %}" class="btn  btn-outline-primary">Remove</a>
+            </div>
+</div>
+
+
+{% endfor %}
+
+
+{%endblock%} 
+

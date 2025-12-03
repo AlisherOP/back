@@ -8,16 +8,25 @@
 </head>
 <body>
     {% block body %}
-    <form action="" method="GET">
+    <!-- <form action="" method="GET">
         <input type="search" name="food_name" value="{{ food_name }}">
         <button type="submit">Search</button>
-    </form>
+    </form> -->
+    <form action="" method="GET" class="mb-4">
+        <div class="input-group">
+            <input type="search" name="food_name" value="{{ food_name }}" class="form-control"
+                placeholder="Search for foods..." aria-label="Search">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search"></i> Search
+            </button>
+        </div>
+        </form>
     {% for item in item_list %}
-    <div class="row">
+    <div class="row food">
         <div class="col-md-3 offset-md-2">
             <img class="card" height="200px" src="{{item.item_image}}" />
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 ">
             <h3>{{item.item_name}}</h3>
             <h4>{{item.item_desc}}</h4>
             <h6>{{item.item_cal}} Cal</h6>
@@ -28,14 +37,32 @@
                 </div>
     </div>
     
-    <!-- {%if item_list.has_previous%}
-        <a href=""></a>
-        <a href=""></a>
-    {%endif%} -->
-
-    
     {% endfor %}
-    {%if item_list.has_previous%}
+
+
+
+
+    <div class="card mt-4">
+        <div class="card-body text-center">
+            {%if item_list.has_previous%}
+            <a href="?page=1{% if food_name %}&food_name={{food_name}}{% endif %}"
+                class="btn btn-outline-dark btn-sm">First</a>
+            <a href="?page={{item_list.previous_page_number}}{% if food_name %}&food_name={{food_name}}{% endif %}"
+                class="btn btn-outline-dark btn-sm">Previous</a>
+            {%endif%}
+    
+            <span class="mx-3"><strong>Page{{item_list.number}} of {{item_list.paginator.num_pages}}</strong></span>
+    
+            {%if item_list.has_next%}
+            <a href="?page={{item_list.next_page_number}}{% if food_name %}&food_name={{food_name}}{% endif %}"
+                class="btn btn-outline-dark btn-sm">Next</a>
+            <a href="?page={{item_list.paginator.num_pages}}{% if food_name %}&food_name={{food_name}}{% endif %}"
+                class="btn btn-outline-dark btn-sm">Last</a>
+            {%endif%}
+        </div>
+        </div>
+
+    <!-- {%if item_list.has_previous%}
         <a href="?page=1{% if food_name %}&food_name={{food_name}}{% endif %}">First</a>
         <a href="?page={{item_list.previous_page_number}}{% if food_name %}&food_name={{food_name}}{% endif %}">Previous</a>
     {%endif%}
@@ -44,7 +71,7 @@
     {%if item_list.has_next%}
         <a href="?page={{item_list.next_page_number}}{% if food_name %}&food_name={{food_name}}{% endif %}">Next</a>
         <a href="?page={{item_list.paginator.num_pages}}{% if food_name %}&food_name={{food_name}}{% endif %}">Last</a>
-    {%endif%}
+    {%endif%} -->
 
     {% endblock %}
 </body>

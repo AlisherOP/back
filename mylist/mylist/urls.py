@@ -40,12 +40,12 @@ urlpatterns = [
     path("logout/", authentication_views.LogoutView.as_view(template_name="users/logout.html"), name="logout"),
     path("users/", include("users.urls")),
     path("profile/",  user_views.profilepage, name= "profile"),
-
     path("fav/<int:id>/", user_views.favourite_add, name="favourite_add"),
-    path("profile/favourites/", user_views.favourite_list, name='favourite_list')
+    path("profile/favourites/", user_views.favourite_list, name='favourite_list'),
+
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-#
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

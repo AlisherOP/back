@@ -22,7 +22,7 @@ class RoomView(viewsets.ModelViewSet):
 
 
 def index(request):
-    item_list = Item.objects.all()
+    item_list = Item.objects.all().order_by('-id')
     food_name = request.GET.get('food_name')
     if food_name != "" and food_name is not None:
         item_list = item_list.filter(item_name__icontains=food_name)
