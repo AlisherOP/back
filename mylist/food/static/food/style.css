@@ -51,7 +51,7 @@ color: rgb(31, 31, 31);
 
 }
 .site-bg {
-    background-image: url('/pictures/room.jpg');
+    background-image: url('/pictures/blank.jpg');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
