@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Item
+from food.models import Item
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,4 +17,4 @@ class ItemSerializer(serializers.ModelSerializer):
         model=Item
         fields = ["id", "user_name", "item_name",
                 "item_desc", "item_cal", "created_at", "auther", "item_image", "favourites"]
-        extra_kwargs= {"auther":{"read_only": True}}
+        extra_kwargs= {"author":{"read_only": True}}

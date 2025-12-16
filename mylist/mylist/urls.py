@@ -35,6 +35,8 @@ router.register('movies', RoomView, basename='movies')
 
 
 urlpatterns = [
+    #serialized version
+    path("api/", include("api.urls")),
     path("api/user/register/", CreateUserView.as_view(), name="register"),
     path("api/token/", TokenObtainPairView.as_view(), name= "get_token"),
     path("api/token/refresh", TokenRefreshView.as_view(), name= "refresh"),
@@ -51,7 +53,6 @@ urlpatterns = [
     path("profile/",  user_views.profilepage, name= "profile"),
     path("fav/<int:id>/", user_views.favourite_add, name="favourite_add"),
     path("profile/favourites/", user_views.favourite_list, name='favourite_list'),
-
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

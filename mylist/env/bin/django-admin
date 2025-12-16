@@ -1,4 +1,4 @@
-#!/home/student/Documents/Back_end/back/mylist/env/bin/python
+#!/home/student/Documents/Back_end/back/mylist/env/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
