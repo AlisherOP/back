@@ -16,5 +16,5 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model=Item
         fields = ["id", "user_name", "item_name",
-                "item_desc", "item_cal", "created_at", "auther", "item_image", "favourites"]
+                "item_desc", "item_cal", "created_at", "author", "item_image", "favourites"]
         extra_kwargs= {"author":{"read_only": True}}
